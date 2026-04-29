@@ -65,13 +65,31 @@ source activate.sh
 bash setup.sh
 ```
 
+Trixie에서는 `cv2`를 apt 패키지 `python3-opencv`에서 가져옵니다. 직접 `pip install opencv-python`을 실행하지 말고 `setup.sh`를 다시 실행하세요.
+
 ## `numpy.dtype size changed`
 
-OpenCV 설치 과정에서 `numpy 2.x`가 들어가 Picamera2 관련 패키지와 충돌한 경우입니다.
+OpenCV 설치 과정에서 OS와 맞지 않는 NumPy가 venv에 들어간 경우입니다.
+
+먼저 OS 버전을 확인하세요.
+
+```bash
+cat /etc/os-release | grep VERSION_CODENAME
+```
+
+Bookworm이면 아래 명령으로 복구합니다.
 
 ```bash
 source activate.sh
 pip install --force-reinstall "numpy<2" "opencv-contrib-python==4.10.0.84"
+```
+
+Trixie이면 venv에 `numpy<2`를 설치하면 안 됩니다. venv를 새로 만들고 `setup.sh`를 다시 실행하세요.
+
+```bash
+rm -rf venv
+bash setup.sh
+source activate.sh
 ```
 
 확인:

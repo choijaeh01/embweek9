@@ -37,6 +37,21 @@ run_check() {
 echo "embweek9 environment check"
 echo "Lab directory: $LAB_DIR"
 
+echo
+echo "== System =="
+if [ -r /etc/os-release ]; then
+  # shellcheck disable=SC1091
+  source /etc/os-release
+  echo "OS codename: ${VERSION_CODENAME:-unknown}"
+else
+  echo "OS codename: unknown"
+fi
+echo "Architecture: $(uname -m)"
+echo "Python: $(python3 --version)"
+if [ "$(uname -m)" != "aarch64" ]; then
+  warn "64-bit Raspberry Pi OS(aarch64)가 아닙니다. YOLO/PyTorch 실습이 실패할 수 있습니다."
+fi
+
 run_check "rpicam-hello exists" command -v rpicam-hello
 run_check "rpicam-still exists" command -v rpicam-still
 run_check "rpicam-vid exists" command -v rpicam-vid

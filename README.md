@@ -15,12 +15,29 @@ PPT는 개념과 흐름을 설명하는 자료로 사용하고, 실제 명령과
 ## 준비물
 
 - Raspberry Pi 5
-- Raspberry Pi OS Bookworm 계열
+- Raspberry Pi OS 64-bit
+  - 최신 Raspberry Pi OS Trixie 지원
+  - Raspberry Pi OS Legacy Bookworm도 지원
 - RPi5 호환 CSI 카메라와 22-pin 카메라 케이블
 - VNC 접속 환경
 - 인터넷 연결
 
 GUI 창이 필요한 예제는 반드시 **VNC 데스크톱 안의 터미널**에서 실행하세요.
+
+수업 시작 전 OS와 아키텍처를 확인하세요.
+
+```bash
+cat /etc/os-release | grep VERSION_CODENAME
+uname -m
+python3 --version
+```
+
+권장값:
+
+```text
+VERSION_CODENAME=trixie
+aarch64
+```
 
 ## 빠른 시작
 
@@ -36,9 +53,15 @@ bash check.sh
 
 - apt 패키지 설치
 - `venv` 생성
-- OpenCV, Ultralytics 설치
+- OS 버전에 맞는 OpenCV/NumPy 설치
+- Ultralytics 설치
 - YOLO11n 모델 다운로드
 - YOLO11n NCNN 모델 변환
+
+`setup.sh`는 `/etc/os-release`를 읽어서 Bookworm과 Trixie를 자동 구분합니다.
+
+- Bookworm: venv 안에 `numpy<2`, `opencv-contrib-python==4.10.0.84` 설치
+- Trixie: apt의 `python3-opencv`, `python3-numpy` 사용
 
 YOLO 모델 다운로드와 NCNN 변환을 나중에 하고 싶다면 다음처럼 실행할 수 있습니다.
 
@@ -192,7 +215,7 @@ bash check.sh
 - `rpicam -hello`가 아니라 `rpicam-hello`입니다.
 - VNC에서 미리보기 창을 보려면 `rpicam-hello --qt-preview -t 0`을 사용하세요.
 - SSH 터미널에서 GUI 창을 띄우려 하지 말고 VNC 데스크톱 터미널에서 실행하세요.
-- OpenCV 설치 시 `numpy<2`를 유지해야 Picamera2와 충돌하지 않습니다.
+- OpenCV/NumPy는 `setup.sh`가 OS 버전에 맞게 설치합니다. 수동으로 `pip install numpy opencv...`를 실행하지 마세요.
 - Pi에서는 `pip install torch ...` 대신 apt의 CPU용 PyTorch 패키지를 사용합니다.
 
 ## 추가 과제
