@@ -12,7 +12,7 @@ echo "== embweek9 setup =="
 echo "Lab directory: $LAB_DIR"
 
 if ! command -v apt-get >/dev/null 2>&1; then
-  echo "이 스크립트는 Raspberry Pi OS/Debian 계열에서 실행해야 합니다."
+  echo "This script must be run on Raspberry Pi OS or Debian."
   exit 1
 fi
 
@@ -27,8 +27,8 @@ echo "OS codename: $OS_CODENAME"
 echo "Architecture: $ARCH"
 
 if [ "$ARCH" != "aarch64" ]; then
-  echo "경고: 이 실습은 Raspberry Pi OS 64-bit(aarch64)를 기준으로 합니다."
-  echo "현재 아키텍처가 $ARCH 이면 YOLO/PyTorch 설치가 실패할 수 있습니다."
+  echo "Warning: this lab is designed for 64-bit Raspberry Pi OS(aarch64)."
+  echo "Current architecture is $ARCH. YOLO/PyTorch may fail."
 fi
 
 echo
@@ -71,8 +71,8 @@ case "$OS_CODENAME" in
       py-cpuinfo ultralytics-thop ultralytics
     ;;
   *)
-    echo "지원하지 않는 OS codename입니다: $OS_CODENAME"
-    echo "Raspberry Pi OS Bookworm 또는 Trixie에서 실행하세요."
+    echo "Unsupported OS codename: $OS_CODENAME"
+    echo "Run this on Raspberry Pi OS Bookworm or Trixie."
     exit 1
     ;;
 esac
@@ -89,8 +89,8 @@ fi
 
 echo
 echo "== Setup complete =="
-echo "다음 명령으로 환경을 활성화하세요:"
+echo "Activate the environment with:"
 echo "  source activate.sh"
 echo
-echo "상태 확인:"
+echo "Check your setup with:"
 echo "  bash check.sh"

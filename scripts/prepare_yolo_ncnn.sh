@@ -7,7 +7,7 @@ VENV_PY="$LAB_DIR/venv/bin/python"
 cd "$LAB_DIR"
 
 if [ ! -x "$VENV_PY" ]; then
-  echo "venv가 없습니다. 먼저 bash setup.sh 를 실행하세요."
+  echo "venv not found. Run: bash setup.sh"
   exit 1
 fi
 

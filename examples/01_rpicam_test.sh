@@ -10,10 +10,10 @@ rpicam-hello --list-cameras
 
 echo
 echo "== 3-second preview =="
-echo "VNC 창에서 미리보기를 보려면 다음 명령을 직접 실행하세요:"
+echo "To see the preview in VNC, run this command in the VNC desktop terminal:"
 echo "  rpicam-hello --qt-preview -t 3000"
 echo
-echo "자동 검증용으로는 화면 없이 3초간 카메라를 실행합니다."
+echo "For automatic checking, this script runs the camera for 3 seconds without preview."
 rpicam-hello --nopreview -t 3000
 
 echo

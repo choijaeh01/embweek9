@@ -15,7 +15,7 @@ MODEL_DIR = LAB_DIR / "yolo11n_ncnn_model"
 def main() -> None:
     if not MODEL_DIR.exists():
         raise SystemExit(
-            "yolo11n_ncnn_model 디렉터리가 없습니다. 먼저 python examples/09_convert_to_ncnn.py 를 실행하세요."
+            "yolo11n_ncnn_model does not exist. Run: python examples/09_convert_to_ncnn.py"
         )
 
     picam2 = Picamera2()

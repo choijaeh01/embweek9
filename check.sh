@@ -49,7 +49,7 @@ fi
 echo "Architecture: $(uname -m)"
 echo "Python: $(python3 --version)"
 if [ "$(uname -m)" != "aarch64" ]; then
-  warn "64-bit Raspberry Pi OS(aarch64)가 아닙니다. YOLO/PyTorch 실습이 실패할 수 있습니다."
+  warn "This is not 64-bit Raspberry Pi OS(aarch64). YOLO/PyTorch may fail."
 fi
 
 run_check "rpicam-hello exists" command -v rpicam-hello
