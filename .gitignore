@@ -1,0 +1,10 @@
+venv/
+outputs/*
+!outputs/.gitkeep
+__pycache__/
+*.pyc
+.DS_Store
+yolo11n.pt
+yolo11n_ncnn_model/
+runs/
+.pytest_cache/
